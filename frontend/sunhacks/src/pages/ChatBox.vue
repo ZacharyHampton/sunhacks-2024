@@ -118,11 +118,20 @@ input {
   border: 1px solid #e0e0e0;
   border-radius: 20px;
   margin-right: 10px;
+  transition: all 0.3s ease;
+
+}
+
+input:hover {
+  border: 1px solid #c9c9c9;
+  transform: scale(1.009);
+  transition: all ease 0.3s
 }
 
 input:focus {
   outline: none;
-  border: 1px solid #c9c9c9;
+  border: 1px solid #635bff;
+
 }
 
 .send-button {
