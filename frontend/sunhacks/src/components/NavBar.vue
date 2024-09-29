@@ -33,6 +33,25 @@ export default {
   font-size: 1.5rem;
   font-weight: bold;
   color: #0a2540;
+  position: relative;
+  text-decoration: none;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+.logo::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #0a2540;
+  transition: width 0.2s ease-in-out;
+}
+
+.logo:hover::after {
+  width: 100%;
 }
 
 .nav-links a {
