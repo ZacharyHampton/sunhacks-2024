@@ -4,3 +4,4 @@ gunicorn==23.0.0
 beautifulsoup4==4.12.3
 requests==2.32.3
 price-parser==0.3.4
+python-dotenv==1.0.1
