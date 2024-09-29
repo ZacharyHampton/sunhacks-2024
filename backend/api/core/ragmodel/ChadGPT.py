@@ -8,7 +8,7 @@ app = FastAPI()
 load_dotenv()
 
 # Load your CSV datasets
-books_data = pd.read_csv("sunhacks-2024\backend\api\core\ragmodel\filtered_2_books.csv")
+books_data = pd.read_csv("sunhacks-2024/backend/api/core/ragmodel/filtered_2_books.csv")
 skis_data = pd.read_csv("sunhacks-2024/backend/api/core/ragmodel/Skis.csv")
 phones_data = pd.read_csv("sunhacks-2024/backend/api/core/ragmodel/Phones_Sheet.csv")
 
