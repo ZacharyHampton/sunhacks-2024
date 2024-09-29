@@ -1,4 +1,6 @@
-from .. import get_all_brands, get_brand_phone_urls, get_phone, get_phones_from_brand
+from distutils.command.upload import upload
+
+from .. import get_all_brands, get_brand_phone_urls, get_phone, get_phones_from_brand, upload_phones_to_mongo
 
 def tests_get_all_brands():
     brands = get_all_brands()
@@ -19,6 +21,9 @@ def tests_get_phone():
 
 
 def tests_get_phones_from_brand():
-    phones = get_phones_from_brand("https://www.gsmarena.com/samsung-phones-9.php")
+    for phones in get_phones_from_brand("https://www.gsmarena.com/oneplus-phones-95.php"):
+        assert len(phones) > 0
 
-    assert len(phones) > 0
+        upload_phones_to_mongo(phones)
+
+
