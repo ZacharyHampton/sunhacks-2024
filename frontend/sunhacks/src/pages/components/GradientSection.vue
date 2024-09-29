@@ -5,7 +5,7 @@
     <div class="content">
       <h1 class="main-text">Finding<br>your perfect<br><span id="typed-output"></span></h1>
         <input type="text" placeholder="Search..." class="search-input">
-          <button class="start-button">Start &#10230;</button>
+          <router-link to ="/chat"><button class="start-button">Start &#10230;</button></router-link>
     </div>
     <HeroFrame />
   </section>
@@ -22,11 +22,12 @@ export default {
   },
   mounted() {
     const options = {
-      strings: ['phone', 'book', 'ski','anything...^3000'],
+      strings: ['phone', 'book', 'skis','anything...^3000'],
       typeSpeed: 50,
       backSpeed: 30,
       backDelay: 1000,
       loop: true,
+
     };
     new Typed('#typed-output', options);
   }
