@@ -6,7 +6,7 @@ export default {
   name: 'App',
   components: {
     NavBar,
-    GradientSection
+    GradientSection,
   },
 }
 </script>
@@ -18,7 +18,6 @@ export default {
     <GradientSection />
       </section>
     <section>
-
     </section>
   </div>
 </template>

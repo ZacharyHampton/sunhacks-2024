@@ -4,6 +4,7 @@
     <div class="diagonal-line"></div>
     <div class="content">
       <h1 class="main-text">Finding<br>your perfect<br><span id="typed-output"></span></h1>
+      <button class="start-button">Start Now</button>
     </div>
   </section>
 </template>
@@ -27,6 +28,25 @@ export default {
 </script>
 
 <style scoped>
+.start-button {
+  background-color: #0A2540;
+  color: white;
+  padding: 16px 28px;
+  border: none;
+  border-radius: 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.start-button:hover {
+  transform: translateY(-1px) scale(1.04);
+  box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+  background-color: #1A3D5C;
+}
+
 .gradient-section {
   position: absolute;
   height: 100vh;
@@ -76,7 +96,7 @@ export default {
 .content {
   position: relative;
   z-index: 2;
-  padding: 5% 10%;
+  padding: 0 10%;
   max-width: 60%;
 }
 
@@ -107,17 +127,18 @@ export default {
 }
 
 .start-button {
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 1.75rem;
   background-color: #0a2540;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-size: large;
 }
 
 @keyframes gradientAnimation {
-  0% { background-position: 0% 50%; }
+  0% { background-position: 0 50%; }
   50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  100% { background-position: 0 50%; }
 }
 </style>
