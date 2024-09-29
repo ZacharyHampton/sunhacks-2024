@@ -1,3 +1,6 @@
 pymongo==4.9.1
 fastapi==0.115.0
 gunicorn==23.0.0
+beautifulsoup4==4.12.3
+requests==2.32.3
+price-parser==0.3.4
