@@ -7,14 +7,19 @@
         <input type="text" placeholder="Search..." class="search-input">
           <button class="start-button">Start &#10230;</button>
     </div>
+    <HeroFrame />
   </section>
 </template>
 
 <script>
 import Typed from 'typed.js';
+import HeroFrame from './HeroFrame.vue'
 
 export default {
   name: 'GradientSection',
+  components: {
+    HeroFrame,
+  },
   mounted() {
     const options = {
       strings: ['phone', 'book', 'ski','anything...^3000'],
