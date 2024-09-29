@@ -15,17 +15,17 @@ phones_data = pd.read_csv("sunhacks-2024/backend/api/core/ragmodel/Phones_Sheet.
 # Configure OpenAI API
 openai.api_key = os.getenv("openai_api_key")
 
-# Helper functions to fetch product recommendations
+# Helper functions to fetch product recommendations (limiting results to 3 to 5)
 def get_books_recommendation(genre="Fantasy"):
     filtered_books = books_data[books_data['specifications.Subjects'].str.contains(genre, case=False, na=False)]
-    return filtered_books[['title', 'image_url']].to_dict(orient='records')
+    return filtered_books[['title', 'image_url']].head(5).to_dict(orient='records')  # Limit to 5 results
 
 def get_ski_recommendation():
     beginner_skis = skis_data[skis_data['specifications.seo.metaDescription'].str.contains('beginner', case=False, na=False)]
-    return beginner_skis[['title', 'image_url']].to_dict(orient='records')
+    return beginner_skis[['title', 'image_url']].head(5).to_dict(orient='records')  # Limit to 5 results
 
 def get_phone_recommendation():
-    return phones_data[['Model', 'image_url']].to_dict(orient='records')
+    return phones_data[['Model', 'image_url']].head(5).to_dict(orient='records')  # Limit to 5 results
 
 # API route to handle chatbot queries
 @app.post("/chat")
