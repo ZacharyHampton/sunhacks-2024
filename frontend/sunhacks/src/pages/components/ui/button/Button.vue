@@ -1,6 +1,6 @@
 <script setup>
 import { Primitive } from "radix-vue";
-import { buttonVariants } from ".";
+import { buttonVariants } from "./index";
 import { defineProps } from 'vue'
 import { cn } from "@/lib/utils";
 

@@ -5,16 +5,21 @@
     <div class="content">
       <h1 class="main-text">Finding<br>your perfect<br><span id="typed-output"></span></h1>
         <input type="text" placeholder="Search..." class="search-input">
-          <button class="start-button">Start Now</button>
+          <router-link to ="/chat"><button class="start-button">Start &#10230;</button></router-link>
     </div>
+    <HeroFrame />
   </section>
 </template>
 
 <script>
 import Typed from 'typed.js';
+import HeroFrame from './HeroFrame.vue'
 
 export default {
   name: 'GradientSection',
+  components: {
+    HeroFrame,
+  },
   mounted() {
     const options = {
       strings: ['phone', 'book', 'ski','anything...^3000'],
@@ -29,30 +34,43 @@ export default {
 </script>
 
 <style scoped>
-
 .search-input {
-  background-color: #ffffff;
+  background-color: transparent;
   color: #0A2540;
-  padding: 16px 28px;
+  padding: 8px 0;
   border: none;
-  border-radius: 24px;
+  border-bottom: 2px solid #0A2540;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 400;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  margin-right: 8px;
+  width: 200px;
+  margin-right: 16px;
+  font-family: "Proxima Nova",serif;
 }
+
+.search-input::placeholder {
+  color: #0A2540;
+  opacity: 0.7;
+}
+
 .search-input:hover {
-  transform: translateY(-1px) scale(1.04);
-  box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
-  background-color: #ffffff;
+  border-bottom-color: #635bff;
 }
+
 .search-input:focus {
-  border: none;
   outline: none;
+  border-bottom-color: #635bff;
+  width: 250px;
+}
+
+.search-input:focus::placeholder {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
 }
 
 .start-button {
+  font-family: "Proxima Nova",serif;
   background-color: #0A2540;
   color: white;
   padding: 16px 28px;
