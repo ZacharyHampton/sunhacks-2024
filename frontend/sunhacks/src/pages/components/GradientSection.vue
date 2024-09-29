@@ -3,12 +3,12 @@
     <div class="gradient-corner"></div>
     <div class="diagonal-line"></div>
     <div class="content">
-      <h1 class="main-text">Finding<br>your perfect<br><span id="typed-output"></span></h1>
+      <h1 class="main-text">Finding<br>your perfect<br><span class="typed-output"></span></h1>
         <input type="text" placeholder="Search..." class="search-input">
-          <router-link to ="/chat"><button class="start-button">Start &#10230;</button></router-link>
+          <router-link to ="/chat"><button class="start-button"><span>Start &#10230;</span></button></router-link>
     </div>
-    <HeroFrame />
   </section>
+  <HeroFrame />
 </template>
 
 <script>
@@ -29,12 +29,13 @@ export default {
       loop: true,
 
     };
-    new Typed('#typed-output', options);
+    new Typed('.typed-output', options);
   }
 }
 </script>
 
 <style scoped>
+
 .search-input {
   background-color: transparent;
   color: #0A2540;
@@ -87,7 +88,7 @@ export default {
 .start-button:hover {
   transform: translateY(-1px) scale(1.04);
   box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
-  background-color: #1A3D5C;
+  background-color: #635bff;
 }
 
 .gradient-section {
@@ -125,20 +126,9 @@ export default {
   z-index: 0;
 }
 
-.diagonal-line {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 200%;
-  height: 200%;
-  border-left: 2px solid rgba(255, 255, 255, 0.5);
-  transform: rotate(45deg) translateY(-50%);
-  z-index: 1;
-}
-
 .content {
   position: relative;
-  z-index: 2;
+  z-index: 0;
   padding: 0 10%;
   max-width: 60%;
 }
