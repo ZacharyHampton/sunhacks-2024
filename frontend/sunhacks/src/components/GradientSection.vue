@@ -4,7 +4,6 @@
     <div class="diagonal-line"></div>
     <div class="content">
       <h1 class="main-text">Finding<br>your perfect<br><span id="typed-output"></span></h1>
-      <p class="sub-text">Find your perfect product, only limited by your wallet.</p>
     </div>
   </section>
 </template>
@@ -29,7 +28,7 @@ export default {
 
 <style scoped>
 .gradient-section {
-  position: relative;
+  position: absolute;
   height: 100vh;
   width: 100%;
   overflow: hidden;
@@ -52,12 +51,13 @@ export default {
   position: absolute;
   top: -50%;
   left: -50%;
+  right: -75%;
   height: 100%;
-  width: 100%;
+  width: 145%;
   transform-origin: top right;
   background: linear-gradient(135deg, #ff80b5 0%, #9089fc 50%, #80e9ff 100%);
   background-size: 400% 400%;
-  animation: gradientAnimation 15s ease infinite;
+  animation: gradientAnimation 8s ease infinite;
   transform: rotate(-12deg);
   z-index: 0;
 }
@@ -81,7 +81,7 @@ export default {
 }
 
 .main-text {
-  font-size: 6rem;
+  font-size: 7rem;
   font-weight: bold;
   color: #0a2540;
   line-height: 1.2;
