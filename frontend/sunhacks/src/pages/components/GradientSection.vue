@@ -5,7 +5,7 @@
     <div class="content">
       <h1 class="main-text">Finding<br>your perfect<br><span id="typed-output"></span></h1>
         <input type="text" placeholder="Search..." class="search-input">
-          <button class="start-button">Start &#10230;</button>
+          <router-link to ="/chat"><button class="start-button">Start &#10230;</button></router-link>
     </div>
     <HeroFrame />
   </section>
