@@ -4,7 +4,8 @@
     <div class="diagonal-line"></div>
     <div class="content">
       <h1 class="main-text">Finding<br>your perfect<br><span id="typed-output"></span></h1>
-      <button class="start-button">Start Now</button>
+        <input type="text" placeholder="Search..." class="search-input">
+          <button class="start-button">Start Now</button>
     </div>
   </section>
 </template>
@@ -28,6 +29,29 @@ export default {
 </script>
 
 <style scoped>
+
+.search-input {
+  background-color: #ffffff;
+  color: #0A2540;
+  padding: 16px 28px;
+  border: none;
+  border-radius: 24px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  margin-right: 8px;
+}
+.search-input:hover {
+  transform: translateY(-1px) scale(1.04);
+  box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+  background-color: #ffffff;
+}
+.search-input:focus {
+  border: none;
+  outline: none;
+}
+
 .start-button {
   background-color: #0A2540;
   color: white;
@@ -141,4 +165,6 @@ export default {
   50% { background-position: 100% 50%; }
   100% { background-position: 0 50%; }
 }
+
+
 </style>
