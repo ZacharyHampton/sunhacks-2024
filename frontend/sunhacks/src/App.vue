@@ -1,26 +1,54 @@
+
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <section class="navbar">
+      <div class="logo">LOGO</div>
+    </section>
+    <section class="dynamic-text">
+      <p>FIND</p>
+      <div ref="typedElement">ANYTHING</div>
+    </section>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+  },
+  mounted() {
+    new Typed(this.$refs.typedElement, {
+      strings: ['BOOKS', 'SKIS', 'PHONES'],
+      typeSpeed: 50,
+      backSpeed: 50,
+      loop: true
+    })
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+<style scoped>
+.navbar {
+  position: relative;
+}
+.logo {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+.dynamic-text {
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  padding: 20px;
+}
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('components/ui/font/proxima-nova.ttf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+#app {
+  font-family: 'Proxima Nova', sans-serif;
 }
 </style>
