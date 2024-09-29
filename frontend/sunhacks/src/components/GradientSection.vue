@@ -3,12 +3,8 @@
     <div class="gradient-corner"></div>
     <div class="diagonal-line"></div>
     <div class="content">
-      <h1 class="main-text">Financial<br>infrastructure<br>to grow your<br><span id="typed-output"></span></h1>
-      <p class="sub-text">Join the millions of companies of all sizes that use Stripe to accept payments online and in person, embed financial services, power custom revenue models, and build a more profitable business.</p>
-      <div class="cta">
-        <input type="email" placeholder="Email address" class="email-input">
-        <button class="start-button">Start now</button>
-      </div>
+      <h1 class="main-text">Finding<br>your perfect<br><span id="typed-output"></span></h1>
+      <p class="sub-text">Find your perfect product, only limited by your wallet.</p>
     </div>
   </section>
 </template>
@@ -20,9 +16,10 @@ export default {
   name: 'GradientSection',
   mounted() {
     const options = {
-      strings: ['revenue', 'business', 'platform'],
+      strings: ['phone', 'book', 'ski','anything...^3000'],
       typeSpeed: 50,
       backSpeed: 30,
+      backDelay: 1000,
       loop: true,
     };
     new Typed('#typed-output', options);
@@ -35,8 +32,20 @@ export default {
   position: relative;
   height: 100vh;
   width: 100%;
-  background: white;
   overflow: hidden;
+  background-color: white;
+}
+
+.gradient-background {
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+
+
+  transform-origin: top right;
+  z-index: 0;
 }
 
 .gradient-corner {
@@ -45,10 +54,11 @@ export default {
   left: -50%;
   height: 100%;
   width: 100%;
-  background: linear-gradient(135deg, #ff6b6b, #f7e08c, #6b88ff);
+  transform-origin: top right;
+  background: linear-gradient(135deg, #ff80b5 0%, #9089fc 50%, #80e9ff 100%);
   background-size: 400% 400%;
   animation: gradientAnimation 15s ease infinite;
-  transform: rotate(45deg);
+  transform: rotate(-12deg);
   z-index: 0;
 }
 
@@ -71,7 +81,7 @@ export default {
 }
 
 .main-text {
-  font-size: 4rem;
+  font-size: 6rem;
   font-weight: bold;
   color: #0a2540;
   line-height: 1.2;
@@ -79,7 +89,7 @@ export default {
 }
 
 .sub-text {
-  font-size: 1.2rem;
+  font-size: 2rem;
   color: #425466;
   margin-bottom: 2rem;
 }

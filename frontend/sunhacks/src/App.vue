@@ -13,8 +13,13 @@ export default {
 
 <template>
   <div id="app">
+    <section>
     <NavBar />
     <GradientSection />
+      </section>
+    <section>
+
+    </section>
   </div>
 </template>
 
