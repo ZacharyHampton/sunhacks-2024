@@ -14,10 +14,8 @@ export default {
 <template>
   <div id="app">
     <section>
-    <NavBar />
-    <GradientSection />
-      </section>
-    <section>
+      <NavBar />
+      <GradientSection />
     </section>
   </div>
 </template>

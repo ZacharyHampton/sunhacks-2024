@@ -28,9 +28,16 @@
       </div>
     </div>
     <div class="inner-div prod">
-      <div class="chat-title">Top Results</div>
-      <div class="item-container">{{ product.title }}</div>
-      <div class="item-container">aaadf</div>
+      <div class="prod-title">Top Results</div>
+      <div class="prod-container">
+        <div v-for="(card, index) in cards" :key="index" class="item">
+          <div class="avatar" :style="{ backgroundImage: `url(${card.avatarUrl})` }"></div>
+          <div class="text-content">
+            <p class="card-title">{{ card.title }}</p>
+            <p class="card-subtext">{{ card.subtext }}</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -38,19 +45,43 @@
 <script>
 import NavBar from '@/pages/components/NavBar.vue'
 
+
 export default {
   name: 'ChatBox',
   components: {
-    NavBar
+    NavBar,
+
   },
   data() {
     return {
-      messages: [],
-      newMessage: '',
-      product: {
-        title: "abcd",
-        image_url: "1234"
-      }
+      cards: [
+        {
+          avatarUrl: 'https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-s24-fe-r1.jpg',
+          title: 'Samsung Galaxy S24',
+          subtext: 'Relevancy: 90%'
+        },
+        {
+          avatarUrl: 'https://fdn2.gsmarena.com/vv/bigpic/xiaomi-redmi-note-14-pro-plus-5g.jpg',
+          title: 'Xiaomi Redmi Note 14 Pro+',
+          subtext: 'Relevancy: 87%'
+        },
+        {
+          avatarUrl: 'https://fdn2.gsmarena.com/vv/bigpic/microsoft-surface-duo.jpg',
+          title: 'Microsoft Surface Pro',
+          subtext: 'Relevancy: 84%'
+        },
+        {
+          avatarUrl: 'https://fdn2.gsmarena.com/vv/bigpic/asus-zenfone-11-ultra.jpg',
+          title: 'Zenfone 11 Ultra',
+          subtext: 'Relevancy: 83%'
+        },
+        {
+          avatarUrl: 'https://fdn2.gsmarena.com/vv/bigpic/zte-nubia-red-magic-nova.jpg',
+          title: 'ZTE nubia Red Magic Nova',
+          subtext: 'Relevancy: 79%'
+        }
+
+      ]
     }
   },
   methods: {
@@ -138,13 +169,13 @@ input:focus {
   transform: translate(-50%, -50%);
   width: 80vw;
   height: 65vh;
-  background-color: rgba(245,245,245,1);
+  background-color: rgba(255,255,255,1);
   border-radius: 50px;
   box-shadow:
+      0 0 30px rgba(0,0,0,0.2),
       0 100px 1000px rgba(245, 245, 245, 0.8),
       150px 0px 1000px rgba(245, 245, 245, 0.8),
       -100px 0 1000px rgba(245, 245, 245, 0.8);
-  border: 1.3px dashed rgba(120, 120, 120, 1);
   z-index: 2;
   display: flex;
   justify-content: space-between;
@@ -157,16 +188,32 @@ input:focus {
 
 .prod {
   width: 70%;
-  border: 1.3px dashed rgba(120, 120, 120, 1);
-  background-color: rgba(237,237,237,1);
+  background-color: white;
+  position:relative;
+  overflow: auto;
+}
+.prod-title {
+  font-size: 30px;
+  text-align: center;
+  padding: 15px;
+  border-bottom: 1.5px dashed gray;
 }
 
 .chat {
   width: 28%;
-  box-shadow: 0 0 30px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   flex-direction: column;
   overflow: hidden;
+}
+.center-box::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: calc(28% + 16px);
+  border-left: 1.5px dashed gray;
+  height: calc(96%);
+  z-index: 3;
 }
 .chat-title {
    background-color:#0a2540;
@@ -185,6 +232,7 @@ input:focus {
 
 .chat-messages {
    flex-grow:1;
+  background-color:white;
    overflow-y:auto;
    padding:20px;
    display:flex;
@@ -256,8 +304,61 @@ input :focus {
 	height :20px ;
 }
 .item-container {
-  height : 120px;
-  border: 1px solid #0A2540;
+  background-color: white;
+  height : 121px;
+  border-bottom: 1.5px dashed gray;
+}
+body {
+  background-color: rgb(234, 234, 234)
+}
+.prod-container {
+  border-radius: 10px;
+  padding: 10px;
+  background-color: rgb(240, 240, 240);
+  margin: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.item {
+  background-color: white;
+  padding-left: 25px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  display: flex;
+  height: 120px;
+  align-items: center;
+}
+.item:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+.avatar {
+  background-color: #525252;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  height: 4rem;
+  width: 4rem;
+  flex-shrink: 0;
+  margin: 2px 16px 2px 2px;
+}
+.text-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  margin: 0;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.card-subtext {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #666;
 }
 </style>
 
