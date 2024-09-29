@@ -1,10 +1,11 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, APIRouter
 import openai
 import pandas as pd
 import os
 from dotenv import load_dotenv
+from pydantic import BaseModel
 
-router = FastAPI()
+router = APIRouter()
 load_dotenv()
 
 # Load your CSV datasets
@@ -32,26 +33,35 @@ def get_phone_recommendation():
     return phones_data[['Model', 'image_url']].head(5).to_dict(orient='records')  # Limit to 5 results
 
 
+class ChatRequest(BaseModel):
+    text: str
+
+
 # API route to handle chatbot queries
 @router.post("/chat")
-async def chat_with_gpt(user_input: str):
-    response = openai.Completion.create(
-        engine="gpt-4",
-        prompt=f"The user asked: {user_input}. Based on the following datasets (books, skis, phones), provide appropriate recommendations if relevant:",
+async def chat_with_gpt(data: ChatRequest):
+    response = openai.chat.completions.create(
+        model="gpt-4",
+        messages=[
+            {
+                "role": "user",
+                "content": f"The user asked: {data.text}. Based on the following datasets (books, skis, phones), provide appropriate recommendations if relevant:",
+            },
+        ],
         max_tokens=150,
     )
 
     # Parse the response from GPT
-    gpt_response = response.choices[0].text.strip()
+    gpt_response = response.choices[0].message.content.strip()
 
     # Logic to provide product recommendations if relevant
-    if "book" in user_input.lower():
+    if "book" in data.text.lower():
         recommendations = get_books_recommendation()
         return {"response": f"{gpt_response}\n\nHere are some book recommendations: {recommendations}"}
-    elif "ski" in user_input.lower():
+    elif "ski" in data.text.lower():
         recommendations = get_ski_recommendation()
         return {"response": f"{gpt_response}\n\nHere are some ski recommendations: {recommendations}"}
-    elif "phone" in user_input.lower():
+    elif "phone" in data.text.lower():
         recommendations = get_phone_recommendation()
         return {"response": f"{gpt_response}\n\nHere are some phone recommendations: {recommendations}"}
     else:

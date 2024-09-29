@@ -6,6 +6,13 @@
         <div v-for="(message, index) in messages" :key="index" class="message" :class="message.type">
           {{ message.text }}
         </div>
+        <div v-if="isLoading" class="message ai loading">
+          <div class="loading-dots">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+            </div>
+        </div>
       </div>
       <div class="chat-input">
         <input
@@ -13,8 +20,9 @@
           v-model="newMessage"
           @keyup.enter="sendMessage"
           placeholder="Send message..."
+          :disabled="isLoading"
         />
-        <button class="send-button" @click="sendMessage">
+        <button class="send-button" @click="sendMessage" :disabled="isLoading">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
             <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
           </svg>
@@ -23,6 +31,7 @@
     </div>
   </div>
 </template>
+
 
 <script>
 import NavBar from '@/pages/components/NavBar.vue'
@@ -35,28 +44,60 @@ export default {
   data() {
     return {
       messages: [],
-      newMessage: ''
+      newMessage: '',
+      isLoading: false
     }
   },
   methods: {
-    sendMessage() {
-      if (this.newMessage.trim()) {
+    async sendMessage() {
+    if (this.newMessage.trim()) {
         this.messages.push({ text: this.newMessage, type: 'sent' });
         this.newMessage = '';
         this.$nextTick(() => {
-          this.scrollToBottom();
+            this.scrollToBottom();
         });
-      }
-    },
+
+        // Get AI response
+        this.isLoading = true;
+        await this.getAIResponse(this.newMessage);
+        this.isLoading = false;
+    }
+},
     scrollToBottom() {
       const chatMessages = this.$refs.chatMessages;
       chatMessages.scrollTop = chatMessages.scrollHeight;
+    },
+
+    async getAIResponse() {
+    try {
+        const response = await fetch('http://localhost:8000/api/v1/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ text: this.newMessage })
+        });
+        const data = await response.json();
+
+        // Add AI response to messages
+        this.messages.push({ text: data.response, type: 'ai' });
+        this.$nextTick(() => {
+            this.scrollToBottom();
+        });
+    } catch (error) {
+        console.error('Error getting AI response:', error);
+      }
     }
   }
 }
 </script>
 
 <style scoped>
+.message.ai {
+  align-self: flex-start;
+  background-color: #f0f0f0;
+  color: #333;
+}
 * {
   font-family: "Proxima Nova", serif;
 }
@@ -66,6 +107,46 @@ export default {
   align-items: center;
   height: 100vh;
   background-color: #f0f0f0;
+  z-index: 0;
+}
+.message.ai.loading {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.loading-dots {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 40px;
+  padding: 10px 15px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background-color: #0a2540;
+  border-radius: 50%;
+  margin: 0 4px;
+  opacity: 0.6;
+  animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.dot:nth-child(1) { animation-delay: -0.32s; }
+.dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+input:disabled, .send-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .chat-box {

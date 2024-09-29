@@ -1,12 +1,14 @@
 <template>
   <div class="hero-frame">
     <div class="inner-frame">
-      <div class="card-container">
-        <div v-for="(card, index) in cards" :key="index" class="inner-card">
-          <div class="avatar" :style="{ backgroundImage: `url(${card.avatarUrl})` }"></div>
-          <div class="text-content">
-            <p class="card-title">{{ card.title }}</p>
-            <p class="card-subtext">{{ card.subtext }}</p>
+      <div class="scroll-container">
+        <div class="card-container">
+          <div v-for="(card, index) in duplicatedCards" :key="index" class="inner-card">
+            <div class="avatar" :style="{ backgroundImage: `url(${card.avatarUrl})` }"></div>
+            <div class="text-content">
+              <p class="card-title">{{ card.title }}</p>
+              <p class="card-subtext">{{ card.subtext }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -19,28 +21,56 @@ export default {
   name: 'HeroFrame',
   data() {
     return {
-      cards: [
+    cards: [
         {
           avatarUrl: 'https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-s24-fe-r1.jpg',
           title: 'Samsung Galaxy S24',
-          subtext: 'Subtext'
+          subtext: '40MP, 512GB, 4000mAH'
         },
         {
           avatarUrl: 'https://www.gutenberg.org/cache/epub/74490/pg74490.cover.medium.jpg',
           title: 'Gods of the Jungle',
-          subtext: 'Subtext'
+          subtext: 'Fantasy, Mythology, 303 pages'
         },
         {
           avatarUrl: 'https://cdn11.bigcommerce.com/s-y84jjppazd/images/stencil/original/products/14271/46061/PNTL02071__22678.1723818623.jpg',
           title: 'Atomic Bent 100 Skis',
-          subtext: 'Subtext'
+          subtext: '162cm, Camber'
         },
         {
           avatarUrl: 'https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-watch-ultra.jpg',
           title: 'Samsung Galaxy Watch Ultra',
-          subtext: 'Subtext'
+          subtext: '47mm, HDR display, 4G LTE'
         },
-      ]
+        {
+          avatarUrl: 'https://www.gutenberg.org/cache/epub/12/pg12.cover.medium.jpg',
+          title: 'Through the Looking-Glass',
+          subtext: 'Folktale, 128 pages'
+        },
+      ],
+      scrollPosition: 0
+    }
+  },
+  computed: {
+    duplicatedCards() {
+      return [...this.cards, ...this.cards];
+    }
+  },
+  mounted() {
+    this.startScrollAnimation();
+  },
+  methods: {
+    startScrollAnimation() {
+      setInterval(() => {
+        this.scrollPosition += 1;
+        const container = this.$el.querySelector('.scroll-container');
+        container.scrollTop = this.scrollPosition;
+
+        if (this.scrollPosition >= container.scrollHeight / 2) {
+          this.scrollPosition = 0;
+          container.scrollTop = 0;
+        }
+      }, 50);
     }
   }
 }
@@ -76,6 +106,16 @@ export default {
   border-radius: 8px;
   overflow: hidden;
   background-color: white;
+}
+
+.scroll-container {
+  height: 100%;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none; /* WebKit */
 }
 
 .card-container {
