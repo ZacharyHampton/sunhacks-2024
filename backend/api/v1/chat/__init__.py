@@ -13,7 +13,7 @@ skis_data = pd.read_csv("data/Skis.csv")
 phones_data = pd.read_csv("data/Phones_Sheet.csv")
 
 # Configure OpenAI API
-openai.api_key = os.getenv("openai_api_key")
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 # Helper functions to fetch product recommendations (limiting results to 3 to 5)
