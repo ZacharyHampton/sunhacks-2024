@@ -1,10 +1,18 @@
-<script setup>
 
+<script>
+  import NavBar from "@/pages/components/NavBar.vue";
+
+
+export default {
+  name: 'App',
+  components: {
+    NavBar,
+  },
+}
 </script>
 
 <template>
-<p>asdfd</p>
-
+  <NavBar />
 </template>
 
 <style scoped>

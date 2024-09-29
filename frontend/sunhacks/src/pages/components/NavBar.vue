@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar">
-    <div class="logo">stripe</div>
+    <router-link to="./"><div class="logo">findit.</div></router-link>
   </nav>
 </template>
 
