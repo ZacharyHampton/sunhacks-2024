@@ -22,7 +22,7 @@ export default {
   },
   mounted() {
     const options = {
-      strings: ['phone', 'book', 'skis','anything...^3000'],
+      strings: ['phone.', 'book.', 'skis.','anything.^3000'],
       typeSpeed: 50,
       backSpeed: 30,
       backDelay: 1000,
