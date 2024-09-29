@@ -7,6 +7,7 @@ import HomePage from '@/pages/HomePage.vue'
 
 const routes = [
     { path: '/', component: HomePage},
+    { path: '/home', component: HomePage},
     { path: '/chat', component: ChatBox},
     { path: '/products', component: ProductPage}
 ]

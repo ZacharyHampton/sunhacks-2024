@@ -1,17 +1,12 @@
 <template>
   <nav class="navbar">
-    <div class="logo">stripe</div>
+    <div class="logo">findit.</div>
   </nav>
 </template>
 
 <script>
 export default {
   name: 'NavBar',
-  data() {
-    return {
-      links: ['Products', 'Solutions', 'Developers', 'Resources', 'Pricing']
-    }
-  }
 }
 </script>
 
@@ -27,6 +22,9 @@ export default {
   padding: 1rem 2rem;
   background-color: transparent;
   z-index: 1000;
+}
+.logo:hover {
+  cursor: pointer;
 }
 
 .logo {
@@ -65,17 +63,5 @@ export default {
   padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
-}
-
-.sign-in {
-  background-color: transparent;
-  border: none;
-  color: #0a2540;
-}
-
-.contact-sales {
-  background-color: #0a2540;
-  color: white;
-  border: none;
 }
 </style>
