@@ -1,39 +1,34 @@
 from fastapi import FastAPI
 import openai
+import pandas as pd
 import os
 from dotenv import load_dotenv
-import pandas as pd
 
+app = FastAPI()
 load_dotenv()
-router = FastAPI()
 
 # Load your CSV datasets
-books_data = pd.read_csv("sunhacks-2024\backend\api\core\DataSets\filtered_2_books.csv")
-skis_data = pd.read_csv("sunhacks-2024/backend/api/core/DataSets/Skis.csv")
-phones_data = pd.read_csv("sunhacks-2024/backend/api/core/DataSets/Phones_Sheet.csv")
+books_data = pd.read_csv("sunhacks-2024/backend/api/core/ragmodel/filtered_2_books.csv")
+skis_data = pd.read_csv("sunhacks-2024/backend/api/core/ragmodel/Skis.csv")
+phones_data = pd.read_csv("sunhacks-2024/backend/api/core/ragmodel/Phones_Sheet.csv")
 
 # Configure OpenAI API
 openai.api_key = os.getenv("openai_api_key")
 
-
-# Helper functions to fetch product recommendations
+# Helper functions to fetch product recommendations (limiting results to 3 to 5)
 def get_books_recommendation(genre="Fantasy"):
     filtered_books = books_data[books_data['specifications.Subjects'].str.contains(genre, case=False, na=False)]
-    return filtered_books[['title', 'url']].to_dict(orient='records')
-
+    return filtered_books[['title', 'image_url']].head(5).to_dict(orient='records')  # Limit to 5 results
 
 def get_ski_recommendation():
-    beginner_skis = skis_data[
-        skis_data['specifications.seo.metaDescription'].str.contains('beginner', case=False, na=False)]
-    return beginner_skis[['title', 'url']].to_dict(orient='records')
-
+    beginner_skis = skis_data[skis_data['specifications.seo.metaDescription'].str.contains('beginner', case=False, na=False)]
+    return beginner_skis[['title', 'image_url']].head(5).to_dict(orient='records')  # Limit to 5 results
 
 def get_phone_recommendation():
-    return phones_data[['Model', 'Price']].to_dict(orient='records')
-
+    return phones_data[['Model', 'image_url']].head(5).to_dict(orient='records')  # Limit to 5 results
 
 # API route to handle chatbot queries
-@router.post("/chat")
+@app.post("/chat")
 async def chat_with_gpt(user_input: str):
     response = openai.Completion.create(
         engine="gpt-4",
