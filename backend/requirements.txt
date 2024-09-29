@@ -5,3 +5,11 @@ beautifulsoup4==4.12.3
 requests==2.32.3
 price-parser==0.3.4
 python-dotenv==1.0.1
+langchain-huggingface==0.1.0
+langchain-mongodb==0.2.0
+langchain==0.3.1
+langchain-text-splitters==0.3.0
+sentence-transformers==3.1.1
+protobuf==5.28.2
+einops==0.8.0
+pandas==2.2.3
