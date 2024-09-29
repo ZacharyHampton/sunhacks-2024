@@ -1,7 +1,5 @@
-def main(): ...
+from fastapi import FastAPI
+from api.v1 import router as api_v1_router
 
-
-
-if __name__ == '__main__':
-    main()
-
+app = FastAPI()
+app.include_router(api_v1_router, prefix="/api/v1")
