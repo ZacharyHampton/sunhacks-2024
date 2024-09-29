@@ -8,9 +8,9 @@ app = FastAPI()
 load_dotenv()
 
 # Load your CSV datasets
-books_data = pd.read_csv("sunhacks-2024\backend\api\core\DataSets\filtered_2_books.csv")
-skis_data = pd.read_csv("sunhacks-2024/backend/api/core/DataSets/Skis.csv")
-phones_data = pd.read_csv("sunhacks-2024/backend/api/core/DataSets/Phones_Sheet.csv")
+books_data = pd.read_csv("sunhacks-2024\backend\api\core\ragmodel\filtered_2_books.csv")
+skis_data = pd.read_csv("sunhacks-2024/backend/api/core/ragmodel/Skis.csv")
+phones_data = pd.read_csv("sunhacks-2024/backend/api/core/ragmodel/Phones_Sheet.csv")
 
 # Configure OpenAI API
 openai.api_key = os.getenv("openai_api_key")
