@@ -1,0 +1,1 @@
+from langchain_mongodb import MongoDBAtlasVectorSearch
