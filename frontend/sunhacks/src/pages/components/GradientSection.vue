@@ -121,7 +121,7 @@ export default {
   transform-origin: top right;
   background: linear-gradient(135deg, #ff80b5 0%, #9089fc 50%, #80e9ff 100%);
   background-size: 400% 400%;
-  animation: gradientAnimation 8s ease infinite;
+  animation: gradientAnimation 7s ease infinite;
   transform: rotate(-12deg);
   z-index: 0;
 }
