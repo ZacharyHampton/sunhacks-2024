@@ -72,6 +72,31 @@ export default {
 </script>
 
 <style scoped>
+* {
+  font-family: "Proxima Nova", serif;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+input:hover {
+  border: 1px solid #c9c9c9;
+  transform: scale(1.009);
+  transition: all ease 0.3s
+}
+input:focus {
+  outline: none;
+  border: 1px solid #635bff;
+
+}
+.message {
+  max-width: 70%;
+  padding: 10px 15px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  animation: fadeIn 0.3s ease-out;
+}
 .diagonal-line {
   position: absolute;
   right: 0.1%;
