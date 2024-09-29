@@ -1,0 +1,62 @@
+<template>
+  <nav class="navbar">
+    <div class="logo">stripe</div>
+  </nav>
+</template>
+
+<script>
+export default {
+  name: 'NavBar',
+  data() {
+    return {
+      links: ['Products', 'Solutions', 'Developers', 'Resources', 'Pricing']
+    }
+  }
+}
+</script>
+
+<style scoped>
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: transparent;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #0a2540;
+}
+
+.nav-links a {
+  margin-right: 1.5rem;
+  color: #0a2540;
+  text-decoration: none;
+}
+
+.auth-buttons button {
+  margin-left: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.sign-in {
+  background-color: transparent;
+  border: none;
+  color: #0a2540;
+}
+
+.contact-sales {
+  background-color: #0a2540;
+  color: white;
+  border: none;
+}
+</style>
